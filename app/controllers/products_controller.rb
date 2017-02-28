@@ -46,4 +46,16 @@ class ProductsController < ApplicationController
     end
     redirect_to :back
   end
+
+  def favorite
+ 		@product = Product.find(params[:id])
+ 		current_user.favorite_products << @product
+ 		redirect_to :back
+ 	end
+
+ 	def unfavorite
+ 		@product = Product.find(params[:id])
+ 		current_user.favorite_products.delete(@product)
+ 		redirect_to :back
+ 	end
 end
